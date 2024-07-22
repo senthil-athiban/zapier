@@ -19,6 +19,10 @@ app.post("/hooks/catch/:userId/:zapId", async (req, res) => {
             }
         })
     });
+
+    return res.json({
+        messsage: "Success"
+    })
 })
 
 app.listen(3000);
