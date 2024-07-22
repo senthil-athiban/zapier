@@ -14,10 +14,11 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   name String
   email String @unique
   password String
+  zap Zap[]
 }
 
 model Zap {
@@ -25,7 +26,9 @@ model Zap {
   triggerId String
   trigger Trigger?
   actions Action[]
-  zapRun ZapRun?
+  zapRun ZapRun[]
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Trigger {
@@ -58,9 +61,9 @@ model AvailableActionType {
 
 model ZapRun {
   id String @id @default(uuid())
-  zapId String @unique
+  zapId String
+  metadata Json
   zap Zap @relation(fields: [zapId], references: [id])
-  metadata String
   zapRunOutBox ZapRunOutBox?
 }
 model ZapRunOutBox {
