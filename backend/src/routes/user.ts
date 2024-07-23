@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { SignInSchema, SignUpSchema } from "../schema";
-import {prismaClient} from "../backend/index";
+import {prismaClient} from "../db/index";
 import bcyprtjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { JWT_PASSWORD } from "../config";
