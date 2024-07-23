@@ -44,7 +44,7 @@ model AvailableTriggerType {
 
 model Action {
   id String @id @default(uuid())
-  zapId String @unique
+  zapId String
   zap Zap @relation(fields: [zapId], references: [id])
   actionId String
   type AvailableActionType @relation(fields: [actionId], references: [id])

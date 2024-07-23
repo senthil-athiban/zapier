@@ -26,7 +26,17 @@ async function main() {
             messages: zap.map((it) => ({
                 value: it.zapRunId
             }))
-        })
+        });
+        
+        await client.zapRunOutBox.deleteMany({
+            where: {
+                id: {
+                    in: zap.map(it => it.id)
+                }
+            }
+        });
+
+        await new Promise(r => setTimeout(r, 3000));
     }
 }
 main();
