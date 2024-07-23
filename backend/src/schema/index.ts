@@ -12,5 +12,9 @@ export const SignInSchema = z.object({
 });
 
 export const zapSchema = z.object({
-    
-})
+    availableTrigger: z.string(),
+    actions: z.array(z.object({
+        actionId: z.string(),
+        actionMetaData: z.any()
+    }))
+});
