@@ -1,7 +1,8 @@
 import LoginCard from '@/components/Auth/LoginCard';
-import React from 'react'
+import React, { useState } from 'react'
 
 const Login = () => {
+  
   return (
       <div className='max-w-5xl min-h-[80vh] m-auto px-4 py-1 grid grid-cols-1 md:grid-cols-2'>
           <div className='flex flex-col justify-center gap-y-4 p-2'>
