@@ -77,7 +77,6 @@ router.get("/", authMiddleware, async (req: Request, res: Response) => {
     // Handles GET requests to the root URL and returns a user object.
     // @ts-ignore
     const id = req.id;
-    console.log(" id : ", id);
     const user = await prismaClient.user.findFirst({
         where: {
             id
@@ -92,5 +91,19 @@ router.get("/", authMiddleware, async (req: Request, res: Response) => {
         user
     });
 });
+
+router.get("/user", authMiddleware, async (req: Request, res: Response) => {
+    // @ts-ignore
+    const id = req.id;
+    const user = await prismaClient.user.findFirst({
+        where: {
+            id
+        }
+    });
+
+    return res.status(200).json({
+        user
+    });
+})
 
 export const userRouter = router;
