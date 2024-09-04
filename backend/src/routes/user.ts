@@ -9,6 +9,7 @@ import { authMiddleware } from "../middlware";
 const router = Router();
 
 router.post("/signup", async (req: Request, res: Response) => {
+    // Handles user sign-up.
     const body = req.body;
     const parsedData = SignUpSchema.safeParse(body);
 
@@ -40,6 +41,7 @@ router.post("/signup", async (req: Request, res: Response) => {
 })
 
 router.post("/signin", async (req: Request, res: Response) => {
+    // Handles POST signin requests.
     const body = req.body;
     const parsedData = SignInSchema.safeParse(body);
     
@@ -72,7 +74,7 @@ router.post("/signin", async (req: Request, res: Response) => {
 });
 
 router.get("/", authMiddleware, async (req: Request, res: Response) => {
-    // getting this req.id from authMiddleware from the payload
+    // Handles GET requests to the root URL and returns a user object.
     // @ts-ignore
     const id = req.id;
     console.log(" id : ", id);
