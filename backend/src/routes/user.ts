@@ -95,15 +95,24 @@ router.get("/", authMiddleware, async (req: Request, res: Response) => {
 router.get("/user", authMiddleware, async (req: Request, res: Response) => {
     // @ts-ignore
     const id = req.id;
-    const user = await prismaClient.user.findFirst({
-        where: {
-            id
+    try {
+        const user = await prismaClient.user.findFirst({
+            where: {
+                id
+            }
+        });
+        if(!user) {
+            return res.status(400).json({
+                message: "No user found"
+            })
         }
-    });
-
-    return res.status(200).json({
-        user
-    });
+        return res.status(200).json({
+            user
+        });    
+    } catch (error) {
+        console.log(error);
+    }
+    
 })
 
 export const userRouter = router;
